@@ -1,0 +1,30 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'pull'
+      - 'docker.io/akashdeepbal/akashdeep-flask-backend:latest'
+      
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'tag'
+      - 'docker.io/akashdeepbal/akashdeep-flask-backend:latest'
+      - 'gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest'
+  
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest'
+  
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'compute'
+      - 'instances'
+      - 'update-container'
+      - 'akashdeep-flask-backend-instance'
+      - '--container-image'
+      - 'gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest'
+      - '--zone'
+      - 'northamerica-northeast2-a'
+
+images:
+  - 'gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest'
