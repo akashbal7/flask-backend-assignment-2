@@ -2,18 +2,7 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "pull"
-      - "docker.io/akashdeepbal/akashdeep-flask-backend:latest"
-
-  - name: "gcr.io/cloud-builders/docker"
-    args:
-      - "tag"
-      - "docker.io/akashdeepbal/akashdeep-flask-backend:latest"
-      - "gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest"
-
-  - name: "gcr.io/cloud-builders/docker"
-    args:
-      - "push"
-      - "gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest"
+      - "docker.io/akashdeepbal/akashdeep-flask-backend:latest" # Pulling the image from Docker Hub
 
   - name: "gcr.io/cloud-builders/gcloud"
     args:
@@ -22,12 +11,12 @@ steps:
       - "update-container"
       - "akashdeep-flask-backend-instance"
       - "--container-image"
-      - "gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest"
+      - "docker.io/akashdeepbal/akashdeep-flask-backend:latest" # Using Docker Hub image directly
       - "--zone"
       - "northamerica-northeast2-a"
 
 images:
-  - "gcr.io/responsive-sun-435918-p6/akashdeep-flask-backend:latest"
+  - "docker.io/akashdeepbal/akashdeep-flask-backend:latest" # Docker Hub image
 
 options:
   logging: CLOUD_LOGGING_ONLY
