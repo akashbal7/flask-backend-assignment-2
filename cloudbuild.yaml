@@ -15,8 +15,5 @@ steps:
       - "--zone"
       - "northamerica-northeast2-a"
 
-images:
-  - "docker.io/akashdeepbal/akashdeep-flask-backend:latest" # Docker Hub image
-
 options:
   logging: CLOUD_LOGGING_ONLY
